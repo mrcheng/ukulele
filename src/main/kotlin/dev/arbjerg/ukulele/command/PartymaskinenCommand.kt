@@ -20,7 +20,7 @@ class PartymaskinenCommand(
 ) : Command("pm", "partymaskinen") {
     override suspend fun CommandContext.invoke() {
         if (!ensureVoiceChannel()) return
-        val identifier = "http://cast.partymaskinen.se:8000/" + argumentText;
+        val identifier = "http://cast.partymaskinen.se/" + argumentText;
         apm.loadItem(identifier, Loader(this, player, identifier))
     }
 
@@ -55,7 +55,7 @@ class PartymaskinenCommand(
     ) : AudioLoadResultHandler {
         override fun trackLoaded(track: AudioTrack) {
             val started = player.add(track)
-            val dj = track.identifier.replace("http://cast.partymaskinen.se:8000/", "")
+            val dj = track.identifier.replace("http://cast.partymaskinen.se/", "")
             if (started) {
                 ctx.reply("Started playing http://cast.partymaskinen.se/ ${dj}")
             } else {
@@ -69,7 +69,7 @@ class PartymaskinenCommand(
         }
 
         override fun noMatches() {
-            val dj = identifier.replace("http://cast.partymaskinen.se:8000/", "")
+            val dj = identifier.replace("http://cast.partymaskinen.se/", "")
             ctx.reply("http://cast.partymaskinen.se/ ${dj} is not currently broadcasting")
         }
 
