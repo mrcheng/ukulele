@@ -101,7 +101,7 @@ class PlayCommand(
     }
 
     override fun HelpContext.provideHelp() {
-        addUsage("<url>")
+        addUsage("<url>, ytsearch:<youtube search query> or scsearch:<soundcloud search query>")
         addDescription("Add the given track to the queue")
     }
 }
